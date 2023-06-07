@@ -1,52 +1,44 @@
-import os 
+import os
 import sys
 from src.exception import CustomException
 from src.logger import logging
-import pandas as pd 
-
-from sklearn.model_selection import train_test_split
+import pandas as pd
 from dataclasses import dataclass
+
+from src.components.data_cleaning import DataCleaning
+from src.components.data_cleaning import DataCleaningConfig
 
 @dataclass
 class DataIngestionConfig:
-    train_data_path: str=os.path.join('artifacts',"train.csv")
-    test_data_path: str=os.path.join('artifacts',"test.csv")
-    raw_data_path: str=os.path.join('artifacts',"data.csv")
+    raw_data_path: str = os.path.join('artifacts', "data.csv")
 
 class DataIngestion:
     def __init__(self):
-        self.ingestion_config=DataIngestionConfig()
-    
+        self.ingestion_config = DataIngestionConfig()
+
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method and component")
         try:
-            df=pd.read_csv('notebook\data\employee_data.csv')
-            logging.info('exported csv file and Read the dataset as dataframe')
+            # Prompt user for the input CSV file path
+            #csv_file = input("Enter the path of the input CSV file: ")
 
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
-                        
-            df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
+            # Read the CSV file into a pandas DataFrame
+            df = pd.read_csv('notebook\data\employee_data.csv')
+            logging.info("Read the dataset as a DataFrame")
 
-            logging.info("Train test split initiated")
-            train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
-            
-            train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
-            
-            test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
+            # Create the artifacts directory if it doesn't exist
+            os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
 
-            logging.info("Ingestion of the data is completed")
+            # Export the raw data to the specified path
+            df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
+            logging.info("Exported CSV file and stored it as raw data")
 
-            return(
-
-                self.ingestion_config.train_data_path,
-                self.ingestion_config.test_data_path
-
-            )
+            return self.ingestion_config.raw_data_path
 
         except Exception as e:
-            raise CustomException(e,sys)
-        
+            raise CustomException(e, sys)
 
-if __name__=="main":
- obj=DataIngestion()
- obj.initiate_data_ingestion()
+
+if __name__ == "__main__":
+    obj = DataIngestion()
+    raw_data_path = obj.initiate_data_ingestion()
