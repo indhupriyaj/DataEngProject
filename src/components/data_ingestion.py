@@ -5,8 +5,6 @@ from src.logger import logging
 import pandas as pd
 from dataclasses import dataclass
 
-from src.components.data_cleaning import DataCleaning
-from src.components.data_cleaning import DataCleaningConfig
 
 @dataclass
 class DataIngestionConfig:

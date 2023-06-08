@@ -1,9 +1,10 @@
-sno,name,age,sex,sal
-1, Siva,43,M,20000
-2, Vishnu,27,M,30000
-3, Indu,29,F,25000
-4, Sanjana,25,F,20000
-5, Ashish,32,M,300000-46
-6, Mangesh,24,M,a23456.45 
-7, James-11,35,M,50000
-8,veni,65,NA,566666
+sno,name,age,sex,salary,phone,email
+1, Siva,43,M,20000,9999333371,wersfds@gmail.com
+2, Vishnu,27,M,30000,8734723424,sfdsfdsf@outlook.com
+3, Indu,29,F,25000,8734590234,sdfdsf@.com
+4, Sanjana,25,F,20000,9345284574,sfdfew76@gmail.com
+5, Ashish,32,M,30000046,9876543210,wersfds@gmail.com
+6, Mangesh,24,M,2345645,8745832435,sfdsfdsf@outlook.com
+7, James-11,35,M,50000,2343523424,wersfds@gmail.com
+8,veni,65,NA,566666,,sfdsfdsf@outlook.com
+9,priya,22,f,500000,3455667889,NA
